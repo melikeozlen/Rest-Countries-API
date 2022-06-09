@@ -5,7 +5,7 @@ import Details from "./components/Details/Details";
 import Main from "./components/Main/Main";
 import { Route, Routes } from "react-router-dom";
 import { lightTheme, darkTheme } from "./theme";
-
+import NotFound from "./components/NotFound/NotFound";
 const AppStyled = styled.div`
   background: ${props => props.theme.background};
   width: 100%;
@@ -23,6 +23,8 @@ const App = () => {
         <Routes>
         <Route  path="/" element={<Main/>}/>
         <Route path='/country/:country' element={<Details/>} />
+        <Route path='*' element={<NotFound/>} />
+
       </Routes>
      
       </AppStyled>
