@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Header from "./components/Header/Header";
-import Search from "./components/Search/Search";
+import Details from "./components/Details/Details";
+import Main from "./components/Main/Main";
+import { Route, Routes } from "react-router-dom";
 import { lightTheme, darkTheme } from "./theme";
 
 const AppStyled = styled.div`
@@ -17,8 +19,12 @@ const App = () => {
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme }>
       <AppStyled>
-        <Header theme ={theme} setTheme={setTheme}/> 
-        <Search/> 
+        <Header theme ={theme} setTheme={setTheme}/>  
+        <Routes>
+        <Route  path="/" element={<Main/>}/>
+        <Route path='/country/:country' element={<Details/>} />
+      </Routes>
+     
       </AppStyled>
     </ThemeProvider>
   );
