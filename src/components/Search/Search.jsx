@@ -9,6 +9,12 @@ width: 80%;
 margin: 3rem auto;
 display: flex;
 justify-content: space-between;
+@media (max-width: 500px) {
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 `;
 const InputBox = styled.div`
@@ -25,6 +31,9 @@ border-radius: 0.3rem;
 box-shadow: 0.1rem 0.1rem 0.1rem rgba(0,0,0,0.1);
 &:first-child{
   font-size: 1.5rem;
+}
+@media (max-width: 500px) {
+  width: 90%;
 }
 `;
 
@@ -54,6 +63,7 @@ position: absolute;
 top: 3.5rem;
 display: flex;
 flex-direction: column;
+z-index: 2;
 width: 100%;
 height: max-content;
 background: ${props => props.theme.elements};
@@ -72,12 +82,32 @@ color: ${  props => props.theme.input ? props.theme.text : '#999'};
   background: ${props => props.theme.background};
 }
 `;
+const ButtonSearch = styled.button`
+background-color:  ${  props => props.theme.background };
+padding: 0.3rem;
+box-shadow: 0.1rem 0.1rem 0.1rem rgba(0,0,0,0.1);
+border-radius: 0.3rem;
+color: ${  props => props.theme.text };
+cursor: pointer;
+border: 0;
+outline: none;
+`;
 const Search = ({callback}) => {
 const [showDropBox, setShowDropBox] = useState(false);
 const [region, setRegion] = useState('');
 const [search, setSearch] = useState('');
 const sendData = () => {
-  callback(region);    
+  setSearch('');
+  callback("region/"+region);    
+}
+const inputfill = () => {
+  if (search === '') {
+    alert("Please fill in the search field");
+  }
+ else {
+   callback("name/"+search)
+
+} 
 }
 useEffect(() => {
 sendData();
@@ -87,8 +117,9 @@ sendData();
       <InputBox>
       <BiSearchAlt2/>
         <Input type="text" placeholder="Search for a city..." onChange={(e)=> setSearch(e.target.value)} value={search}/>
+      <ButtonSearch onClick={inputfill}>serach</ButtonSearch>
       </InputBox>
-      <DropBox onClick={()=> showDropBox ===true ? setShowDropBox(false) : setShowDropBox(true) }>
+      <DropBox  onClick={()=> showDropBox ===true ? setShowDropBox(false) : setShowDropBox(true) }>
         {
           region.length > 0  ?<span>{region}</span> : <span>Filter by region</span> 
         }

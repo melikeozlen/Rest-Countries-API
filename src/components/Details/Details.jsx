@@ -6,11 +6,11 @@ const StyledDetailsPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-    margin: 3rem auto;
+  margin: 3rem auto;
   width: 90%;
-  
   gap: 1rem;
   height: 50vh;
+
 `;
 const Back = styled(Link)`
   width: max-content;
@@ -29,10 +29,16 @@ const Detail = styled.div`
     min-height: 50vh;
     justify-content: center;
     align-items: center;
+    @media (max-width: 650px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 2.5fr;
+
+  }
 `;
 const Image = styled.img`
   width: 100%;
   object-fit: cover;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
 `;
 const Info = styled.div`
   display: grid;
@@ -51,6 +57,18 @@ color: ${props => props.theme.text};
 border-radius: 0.2rem;
 background-color:  ${props => props.theme.elements};
 `;
+const Loading = styled.div`
+position: absolute;
+width: 100%;
+height: 50%;
+justify-content: center;
+left: 0;
+background-color: ${props => props.theme.background};
+display: flex;
+align-items: center;
+font-size: 2rem;
+`;
+
 const Borders = styled.div`
 
 width: 100%;
@@ -58,6 +76,10 @@ width: 100%;
 display: flex;
 gap: 1rem;
 flex-wrap: wrap;
+@media (max-width: 650px) {
+  margin: 2rem 0;
+  gap: 0.3rem;
+  }
 `;
 const ContRight = styled.div`
     display: flex;
@@ -93,16 +115,19 @@ const Details = () => {
   }, [country]);
 useEffect(() => {
     setBorder2([]);
-    borderName.map((border, len ) => {
+    if (borderName) {
+         borderName.map((border, len ) => {
       return  getBorder(border);
     })
+    }
+   
     
 }, [borderName]);
   return (
     <StyledDetailsPage>
-      <Back to="/">Back</Back>
+      <Back to="/">HOME</Back>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading>LOADING</Loading>
       ) : (
         <Detail>
           <Image src={countryDetails.flags.png} />

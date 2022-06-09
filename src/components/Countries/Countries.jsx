@@ -23,7 +23,8 @@ width: 100%;
 height: 50%;
 justify-content: center;
 left: 0;
-background-color: var(--very-lightGray);
+font-size: 2rem;
+background-color: ${props => props.theme.background};
 display: flex;
 align-items: center;
 `;
@@ -41,7 +42,7 @@ const Countries = ({continent}) => {
     <CountriesStyled>{
         countries.length>0 ?
         countries.map((country,index) => {
-         return(
+         return( 
          <LinkStyled key={index} to={`/country/${country.name.common}`}>  
           <MainItem key={index} country={country}/>
          </LinkStyled>
@@ -49,7 +50,7 @@ const Countries = ({continent}) => {
         })
         :
         <>
-           <Loading>LOADING ... </Loading>
+           <Loading>LOADING </Loading>
         </>
       }
       </CountriesStyled>

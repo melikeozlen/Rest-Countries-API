@@ -22,16 +22,20 @@ overflow: hidden;
 `;
 const Title = styled.h1`
 font-size: 1rem;
+color: ${props => props.theme.text};
 `;
 const Info = styled.div`
 padding: 0.5rem 1rem;
 display: flex;
 flex-direction: column;
 gap: 0.5rem;
+color: ${props => props.theme.text};
+
 `;
 const MainItem = ({country}) => {
   return (
     <MainItemStyled>
+  
        {/*Flog*/}
        <Flag src={country.flags.svg} alt="flag"/>
       {/*Title*/}
