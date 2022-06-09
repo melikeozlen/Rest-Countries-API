@@ -13,7 +13,11 @@ const AppStyled = styled.div`
   min-height: 100vh;
   color:${props => props.theme.text} ;
   `;
-
+const P  = styled.p`
+width: 100%;
+text-align: center;
+margin-top: 2%;
+`;
 const App = () => {
   const [theme, setTheme] = useState("light");
   return (
@@ -26,8 +30,9 @@ const App = () => {
         <Route path='*' element={<NotFound/>} />
 
       </Routes>
-     
+     <P>Coded by MELİKE ÖZLEN</P>
       </AppStyled>
+      
     </ThemeProvider>
   );
 };

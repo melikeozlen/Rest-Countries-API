@@ -9,7 +9,8 @@ const StyledDetailsPage = styled.div`
   margin: 3rem auto;
   width: 90%;
   gap: 1rem;
-  height: 50vh;
+  height: max-content;
+  min-height: 50vh;
 
 `;
 const Back = styled(Link)`
@@ -31,7 +32,7 @@ const Detail = styled.div`
     align-items: center;
     @media (max-width: 650px) {
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 2.5fr;
+      grid-template-rows: 1fr 1fr;
 
   }
 `;
@@ -130,7 +131,7 @@ useEffect(() => {
         <Loading>LOADING</Loading>
       ) : (
         <Detail>
-          <Image src={countryDetails.flags.png} />
+          <Image src={countryDetails.flags.png} alt={countryDetails.name.common}/>
           <ContRight>
 
       

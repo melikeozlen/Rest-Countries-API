@@ -23,7 +23,11 @@ gap: 0.5rem;
 align-items: center;
 `;
 const Title = styled.h1`
+  font-size: 1.8rem;
 
+@media (max-width: 500px) {
+  font-size: 1.2rem;
+}
 `;
 const Header = ({theme, setTheme}) => {
   return (
